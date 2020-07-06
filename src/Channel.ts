@@ -45,6 +45,12 @@ export class Channel extends EventEmitter {
   private coordID: string | null;
   private coordVersion: string | null;
 
+  /**
+   * @param host The url of the host.
+   *
+   * @param keyRing  A KeyRing object to use.
+   *
+   */
   constructor(host: string, keyRing: KeyRing) {
     super();
     this.host = host;

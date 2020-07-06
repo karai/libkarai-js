@@ -1,8 +1,7 @@
 module.exports = {
-  tsconfig: './tsconfig.json',
   out: './docs',
   excludeExternals: true,
-  excludeNotExported: true,
+  excludeNotExported: false,
   excludePrivate: true,
   mode: 'file'
 }

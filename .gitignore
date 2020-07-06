@@ -6,3 +6,4 @@ dist
 keyring
 *.tgz
 ./docs
+docs
