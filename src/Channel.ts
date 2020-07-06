@@ -13,15 +13,25 @@ interface ISubscription {
   callback: Function;
 }
 
+interface ITransactions {
+  /**
+   * Retrieves the transactions in the channel.
+   *
+   * @returns - The connected coordinator Peer ID.
+   */
+  retrieve: () => Promise<any[]>;
+}
+
 /**
  * The Channel provides an interface that allows you to perform actions on karai channels.
  *
  * @noInheritDoc
  */
 export class Channel extends EventEmitter {
-  public transactions: {
-    retrieve: () => any;
-  };
+  /**
+   * Transactions contains the methods for interacting with transactions.
+   */
+  public transactions: ITransactions;
   public coordinator: {
     info: () => any;
   };
@@ -72,7 +82,6 @@ export class Channel extends EventEmitter {
    *
    * @returns - The connected coordinator Peer ID.
    */
-
   private getCoordID(): string {
     return this.coordID!;
   }
