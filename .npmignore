@@ -12,3 +12,4 @@ docs
 tsconfig.json
 tslint.json
 scripts
+key*
