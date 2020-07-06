@@ -34,7 +34,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn docs; yarn prettier; git add --all; lint-staged"
+      "pre-commit": "yarn prettier; git add --all; lint-staged"
     }
   },
   "dependencies": {
