@@ -160,7 +160,6 @@ export class Channel extends EventEmitter {
    */
   constructor(host: string, keyRing: KeyRing, secure: boolean = true) {
     super();
-    console.log(host);
     this.secure = secure;
     this.host = host;
     this.keyRing = keyRing;

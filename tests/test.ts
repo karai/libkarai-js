@@ -3,9 +3,9 @@ import { Channel, KeyRing, Utils } from "../src/index";
 const keyring = new KeyRing(":memory:");
 const channel = new Channel("zeus.karai.io:4200", keyring, false);
 
-let checks: Record<string, boolean> = {
-  keyringReady: false,
+const checks: Record<string, boolean> = {
   channelReady: false,
+  keyringReady: false,
   retrieveTransactions: false,
 };
 
@@ -29,16 +29,16 @@ setTimeout(() => {
 }, 5000);
 
 keyring.on("ready", () => {
-  console.log("keyring.on('ready'): passed ✅");
+  console.log("keyring.on('ready'): passed ✔️");
   checks.keyringReady = true;
 });
 
 channel.on("ready", async () => {
-  console.log("channel.on('ready'): passed ✅");
+  console.log("channel.on('ready'): passed ✔️");
   checks.channelReady = true;
   const transactions = await channel.transactions.retrieve();
   if (transactions) {
-    console.log("transactions.retrieve(): passed ✅");
+    console.log("transactions.retrieve(): passed ✔️");
     checks.retrieveTransactions = true;
   }
 });
