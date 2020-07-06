@@ -91,7 +91,7 @@
 				<a href="#quickstart" id="quickstart" style="color: inherit; text-decoration: none;">
 					<h2>Quickstart</h2>
 				</a>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Channel, KeyRing, Utils } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;libkarai&quot;</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Channel, KeyRing, Utils } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;libkarai-js&quot;</span>;
 
 <span class="hljs-keyword">const</span> keyring = <span class="hljs-keyword">new</span> KeyRing(<span class="hljs-string">&quot;./keyring&quot;</span>);
 <span class="hljs-keyword">const</span> channel = <span class="hljs-keyword">new</span> Channel(<span class="hljs-string">&quot;ws://zeus.karai.io:4200&quot;</span>, keyring);
@@ -101,7 +101,7 @@ channel.on(<span class="hljs-string">&quot;ready&quot;</span>, <span class="hljs
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;My public key is &quot;</span> + Utils.toHexString(keyring.getPub()));
 });
 
-channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-function">(<span class="hljs-params">error: <span class="hljs-built_in">Error</span></span>) =&gt;</span> {
+channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
   <span class="hljs-comment">// do something with the error</span>
 });</code></pre>
 			</div>

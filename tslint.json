@@ -18,5 +18,6 @@
     "no-default-export": true
   },
   "rulesDirectory": [],
-  "extends": ["tslint:latest", "tslint-config-prettier"]
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "excludes:": ["./scripts"]
 }

@@ -203,7 +203,7 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 					<a name="on" class="tsd-anchor"></a>
 					<h3>on</h3>
 					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"ready"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"ready"</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -218,13 +218,13 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 									<p>This is emitted whenever the channel finishes the handshake process. You must
 									wait for it to do any channel operations.</p>
 								</div><p>Example:</p>
-								<pre><code class="language-ts">channel.on(<span class="hljs-string">&#x27;ready&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+								<pre><code class="language-ts">channel.on(<span class="hljs-string">&#x27;ready&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; {
     <span class="hljs-comment">// do something with the channel</span>
     <span class="hljs-keyword">const</span> transactions = <span class="hljs-keyword">await</span> channel.transactions.retrieve();
 });</code></pre>
 								</div><div class="tsd-comment tsd-typography tsd-comment-text">
 								<p>Example:</p>
-								<pre><code class="language-ts">channel.on(<span class="hljs-string">&#x27;ready&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+								<pre><code class="language-ts">channel.on(<span class="hljs-string">&#x27;ready&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; {
     <span class="hljs-comment">// do something with the channel</span>
     <span class="hljs-keyword">const</span> transactions = <span class="hljs-keyword">await</span> channel.transactions.retrieve();
 });</code></pre>
@@ -233,6 +233,21 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 							<ul class="tsd-parameters">
 								<li>
 									<h5>event: <span class="tsd-signature-type">"ready"</span></h5>
+								</li>
+								<li>
+									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>

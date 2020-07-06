@@ -1,7 +1,7 @@
 import ax from "axios";
 import { EventEmitter } from "events";
 import fs from "fs";
-import WebSocket from "ws";
+import WebSocket, { MessageEvent } from "isomorphic-ws";
 import { KeyRing } from "./KeyRing";
 import { Utils } from "./Utils";
 
@@ -93,7 +93,7 @@ export declare interface Channel {
    * Example:
    *
    * ```ts
-   * channel.on('ready', () => {
+   * channel.on('ready', async () => {
    *     // do something with the channel
    *     const transactions = await channel.transactions.retrieve();
    * });
@@ -101,7 +101,7 @@ export declare interface Channel {
    *
    * @event
    */
-  on(event: "ready"): this;
+  on(event: "ready", callback: () => void): this;
 }
 
 export class Channel extends EventEmitter {
@@ -215,14 +215,14 @@ export class Channel extends EventEmitter {
     const endpoint = "/api/v1/channel";
     const ws = new WebSocket(`${this.host!}${endpoint}`);
 
-    ws.on("message", (msg: string) => {
+    ws.onmessage = (event: MessageEvent) => {
       if (this.subscription) {
-        this.subscription.callback(msg);
+        this.subscription.callback(event.data);
         this.subscription = null;
       }
-    });
+    };
 
-    ws.on("open", async () => {
+    ws.onopen = async () => {
       if (this.keyRing!.getCert() == null) {
         this.subscribe("JOIN", (msg: string) => {
           this.signedPubKey = msg;
@@ -280,7 +280,7 @@ export class Channel extends EventEmitter {
 
         this.emit("ready");
       }
-    });
+    };
 
     this.ws = ws;
   }

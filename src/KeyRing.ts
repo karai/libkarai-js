@@ -40,7 +40,7 @@ export declare interface KeyRing {
    *
    * @event
    */
-  on(event: "ready"): this;
+  on(event: "ready", callback: () => void): this;
 }
 
 /**
