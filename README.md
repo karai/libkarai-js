@@ -1,5 +1,7 @@
 # libkarai-js
 
+[![npm version](https://badge.fury.io/js/libkarai-js.svg)](https://badge.fury.io/js/libkarai-js)
+
 A library to interact with karai channels in javascript.
 
 This library provides three exported classes.
@@ -13,6 +15,10 @@ This library provides three exported classes.
 ```
 yarn add libkarai-js
 ```
+
+## Documentation
+
+You can find a link to the documentation [here](https://karai.io/libkarai-js/)
 
 ## Quickstart
 
