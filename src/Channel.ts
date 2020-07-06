@@ -83,6 +83,27 @@ interface ITransactions {
  * ```
  * @noInheritDoc
  */
+
+// tslint:disable-next-line: interface-name
+export declare interface Channel {
+  /**
+   * This is emitted whenever the channel finishes the handshake process. You must
+   * wait for it to do any channel operations.
+   *
+   * Example:
+   *
+   * ```ts
+   * channel.on('ready', () => {
+   *     // do something with the channel
+   *     const transactions = await channel.transactions.retrieve();
+   * });
+   * ```
+   *
+   * @event
+   */
+  on(event: "ready"): this;
+}
+
 export class Channel extends EventEmitter {
   /**
    * The transactions object contains the methods for interacting with transactions.

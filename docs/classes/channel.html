@@ -113,6 +113,12 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
+							<h3>Events</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-event tsd-parent-kind-class tsd-is-overwrite"><a href="channel.html#on" class="tsd-kind-icon">on</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="channel.html#coordinator" class="tsd-kind-icon">coordinator</a></li>
@@ -140,7 +146,7 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/0f617d4/src/Channel.ts#L104">src/Channel.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/Channel.ts#L125">src/Channel.ts:125</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -170,6 +176,44 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Events</h2>
+				<section class="tsd-panel tsd-member tsd-kind-event tsd-parent-kind-class tsd-is-overwrite">
+					<a name="on" class="tsd-anchor"></a>
+					<h3>on</h3>
+					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"ready"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides EventEmitter.on</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/Channel.ts#L104">src/Channel.ts:104</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This is emitted whenever the channel finishes the handshake process. You must
+									wait for it to do any channel operations.</p>
+								</div>
+								<p>Example:</p>
+								<pre><code class="language-ts">channel.on(<span class="hljs-string">&#x27;ready&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// do something with the channel</span>
+    <span class="hljs-keyword">const</span> transactions = <span class="hljs-keyword">await</span> channel.transactions.retrieve();
+});</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <span class="tsd-signature-type">"ready"</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="coordinator" class="tsd-anchor"></a>
@@ -177,7 +221,7 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 					<div class="tsd-signature tsd-kind-icon">coordinator<span class="tsd-signature-symbol">:</span> <a href="../interfaces/icoordinator.html" class="tsd-signature-type">ICoordinator</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/0f617d4/src/Channel.ts#L94">src/Channel.ts:94</a></li>
+							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/Channel.ts#L115">src/Channel.ts:115</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -192,7 +236,7 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 					<div class="tsd-signature tsd-kind-icon">transactions<span class="tsd-signature-symbol">:</span> <a href="../interfaces/itransactions.html" class="tsd-signature-type">ITransactions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/0f617d4/src/Channel.ts#L90">src/Channel.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/Channel.ts#L111">src/Channel.ts:111</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -214,7 +258,7 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/0f617d4/src/Channel.ts#L136">src/Channel.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/Channel.ts#L157">src/Channel.ts:157</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/ichannelinfo.html" class="tsd-signature-type">IChannelInfo</a></h4>
@@ -240,6 +284,9 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="channel.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-event tsd-parent-kind-class tsd-is-overwrite">
+								<a href="channel.html#on" class="tsd-kind-icon">on</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="channel.html#coordinator" class="tsd-kind-icon">coordinator</a>

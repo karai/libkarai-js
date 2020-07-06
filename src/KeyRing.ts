@@ -14,6 +14,35 @@ const configFolder = {
   pubKey: "key.pub",
 };
 
+// tslint:disable-next-line: interface-name
+export declare interface KeyRing {
+  /**
+   * This is emitted whenever the keyring is done initializing. In the initialization
+   * process, it will either load or create the key folder and key files at the
+   * specified path.
+   *
+   * Example:
+   *
+   * ```ts
+   *   keyring.on("ready", () => {
+   *   const signed = keyring.sign(keyring.getPub());
+   *   const verified = keyring.verify(keyring.getPub(), signed, keyring.getPub());
+   *
+   *   if (verified) {
+   *     console.log("The signature is verified!");
+   *   }
+   * });
+   *
+   *   keyring.on("error", (error: Error) => {
+   *     // do something with the error
+   *   });
+   * ```
+   *
+   * @event
+   */
+  on(event: "ready"): this;
+}
+
 /**
  * The KeyRing provides an interface that allows you to generate
  * and store a pair of ed25519 keys, as well as sign and
