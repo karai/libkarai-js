@@ -11,8 +11,5 @@ channel.on("ready", async () => {
   // do something with the channel
   const transactions = await channel.transactions.retrieve();
 
-  for (const tx of transactions) {
-    console.log("tx");
-    console.log(tx.tx_data);
-  }
+  console.log("Coordinator initialized!");
 });

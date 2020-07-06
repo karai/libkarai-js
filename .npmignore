@@ -12,7 +12,7 @@ docs
 tsconfig.json
 tslint.json
 scripts
-key*
+keyring
 typedoc.json
 *.log
 tests
