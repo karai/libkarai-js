@@ -1,15 +1,44 @@
 import { Channel, KeyRing, Utils } from "../src/index";
 
 const keyring = new KeyRing(":memory:");
-const channel = new Channel("ws://zeus.karai.io:4200", keyring);
+const channel = new Channel("zeus.karai.io:4200", keyring, false);
+
+let checks: Record<string, boolean> = {
+  keyringReady: false,
+  channelReady: false,
+  retrieveTransactions: false,
+};
+
+setTimeout(() => {
+  let checksFailed = false;
+
+  for (const key in checks) {
+    if (!checks[key]) {
+      console.log(key + ": failed ❌");
+      checksFailed = true;
+    }
+  }
+
+  if (checksFailed) {
+    console.warn("Checks failed.");
+    process.exit(1);
+  } else {
+    console.log("All tests successful.");
+    process.exit(0);
+  }
+}, 5000);
 
 keyring.on("ready", () => {
-  console.log("Keyring initialized!");
+  console.log("keyring.on('ready'): passed ✅");
+  checks.keyringReady = true;
 });
 
 channel.on("ready", async () => {
-  // do something with the channel
+  console.log("channel.on('ready'): passed ✅");
+  checks.channelReady = true;
   const transactions = await channel.transactions.retrieve();
-
-  console.log("Coordinator initialized!");
+  if (transactions) {
+    console.log("transactions.retrieve(): passed ✅");
+    checks.retrieveTransactions = true;
+  }
 });

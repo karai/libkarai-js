@@ -84,8 +84,8 @@
 				</a>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Channel, KeyRing, Utils } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;libkarai-js&quot;</span>;
 
-<span class="hljs-keyword">const</span> keyring = <span class="hljs-keyword">new</span> KeyRing(<span class="hljs-string">&quot;./keyring&quot;</span>);
-<span class="hljs-keyword">const</span> channel = <span class="hljs-keyword">new</span> Channel(<span class="hljs-string">&quot;ws://zeus.karai.io:4200&quot;</span>, keyring);
+<span class="hljs-keyword">const</span> keyring = <span class="hljs-keyword">new</span> KeyRing(<span class="hljs-string">&quot;:memory:&quot;</span>);
+<span class="hljs-keyword">const</span> channel = <span class="hljs-keyword">new</span> Channel(<span class="hljs-string">&quot;zeus.karai.io:4200&quot;</span>, keyring, <span class="hljs-literal">false</span>);
 
 channel.on(<span class="hljs-string">&quot;ready&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Channel info: &quot;</span>, channel.info());

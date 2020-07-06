@@ -116,13 +116,20 @@ export class KeyRing extends EventEmitter {
    * @param keyFolder - The folder where you want the keys to be saved.
    * If the folder does not exist, it will be created.
    * Keys are saved as utf8 encoded hex strings on the disk.
+   * @param secretKey - If you are initializing a secret key you already have, input it here.
+   * @param cert - If you already have a cert, you may input it here. You must supply
+   * the cert if you have connected with this keypair before.
    */
-  constructor(keyFolder: string, secretKey: string | null = null) {
+  constructor(
+    keyFolder: string,
+    secretKey: string | null = null,
+    cert: string | null = null
+  ) {
     super();
 
     this.memoryOnly = keyFolder === ":memory:";
     this.init = this.init.bind(this);
-    this.cert = null;
+    this.cert = cert ? Utils.fromHexString(cert) : null;
     this.keyFolder = keyFolder;
     this.pubKeyFile = `${this.keyFolder}/${configFolder.pubKey}`;
     this.privKeyFile = `${this.keyFolder}/${configFolder.privKey}`;

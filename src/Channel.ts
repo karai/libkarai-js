@@ -78,8 +78,8 @@ interface ITransactions {
  * ```ts
  * import { Channel, KeyRing, Utils } from 'libkarai-js';
  *
- * const keyring = new KeyRing("./keyring");
- * const channel = new Channel("ws://zeus.karai.io:4200", keyring);
+ * const keyring = new KeyRing(":memory:");
+ * const channel = new Channel("zeus.karai.io:4200", keyring, false);
  *
  * channel.on("ready", async () => {
  *   console.log("Channel info: ", channel.info());
