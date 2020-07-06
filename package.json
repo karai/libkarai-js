@@ -1,14 +1,14 @@
 {
   "name": "libkarai-js",
   "version": "0.1.0",
-  "description": "Quick start for typescript projects",
+  "description": "A library for working with karai channels",
   "main": "./dist/index.js",
   "author": "Extra <extrahash@protonmail.com>",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "node ./node_modules/typescript/bin/tsc",
+    "prepack": "yarn build",
     "prettier": "node ./node_modules/prettier/bin-prettier.js '**/*.{ts,tsx,json,md}' --trailing-comma es5 --ignore-path .gitignore --arrow-parens always --write",
     "lint": "./node_modules/tslint/bin/tslint src/**/*.ts{,x}",
     "lint-fix": "./node_modules/tslint/bin/tslint src/**/*.ts{,x} --fix"

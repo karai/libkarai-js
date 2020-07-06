@@ -1,23 +1,42 @@
-# typescript-boilerplate
+# libkarai-js
 
-A quick start repo for typescript projects.
+Quickstart usage:
 
-Contains these tools:
+```ts
+import { Channel, KeyRing } from "libkarai";
 
-1. Prettier for code formatting
-2. TSLint for linting
-3. Husky & lint-staged for pre-commit hooks (currently foirmats and then lints the code pre-commit)
+const keyring = new KeyRing("./keyring");
+const channel = new Channel("ws://zeus.karai.io:4200", keyring);
 
-All of your typescript files should go in the `./src` directory, and the compiled javscript will be available at `./dist`.
+// If you want to perform operations with the keyring, wait for the ready event.
+keyring.on("ready", () => {
+  const signed = keyring.sign(keyring.getPub());
+  const verified = keyring.verify(keyring.getPub(), signed, keyring.getPub());
 
-## Setup
+  if (verified) {
+    console.log("The signature is verified!");
+  }
+});
 
-- Install the dependencies
+keyring.on("error", (error: Error) => {
+  // do something with the error
+});
 
-`yarn`
+// the channel will automatically wait for the keyring ready event 
+// of the keyring it is passed.
+channel.on("ready", async () => {
+  console.log("Channel is connected!");
+  console.log("Channel info: ", channel.info());
 
-- Start the project. Typescript will be compiled automatically.
+  const transactions = await channel.transactions.retrieve();
+  console.log(transactions.length + " Transactions found.");
 
-`yarn start`
+  const coordinatorInfo = await channel.coordinator.info();
+  console.log("Coordinator info: ", coordinatorInfo);
+});
 
-You can now lint your project with `yarn lint` or `yarn lint-fix`
+channel.on("error", (error: Error) => {
+  // do something with the error
+});
+
+```
