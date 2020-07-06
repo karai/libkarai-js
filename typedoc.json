@@ -3,5 +3,22 @@
   "excludeExternals": true,
   "excludeNotExported": true,
   "excludePrivate": true,
-  "mode": "file"
+  "mode": "file",
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/karai/libkarai-js"
+    },
+    {
+      "label": "Karai Homepage",
+      "url": "https://karai.io/"
+    }
+  ],
+  "outline": [
+    {
+      "KeyRing": "./classes/keyring",
+      "Channel": "./classes/channel",
+      "Utils": "./classes/utils"
+    }
+  ]
 }

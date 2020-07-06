@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>KeyRing | libkarai-js</title>
-	<meta name="description" content="Documentation for libkarai-js">
+	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,7 +22,11 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
+					<ul class="results-priority" style="display:none">
+					</ul>
 					<a href="../index.html" class="title">libkarai-js</a>
+					&emsp;<a href="https://github.com/karai/libkarai-js" class="title">GitHub</a>
+					&emsp;<a href="https://karai.io/" class="title">Karai Homepage</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -49,26 +53,55 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
-				</li>
-				<li>
 					<a href="keyring.html">KeyRing</a>
 				</li>
 			</ul>
-			<h1>Class KeyRing</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
-		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation outline primary">
+				<a style="margin-left:0em" href="../globals.html">Globals</a>
+				<ul style="display:none">
+					{&quot;KeyRing&quot;:&quot;./classes/keyring&quot;,&quot;Channel&quot;:&quot;./classes/channel&quot;,&quot;Utils&quot;:&quot;./classes/utils&quot;}
+				</ul>
+			</nav>
+		</div>
+		<div class="col-7 offset-3 col-content">
+			<h1>Class KeyRing</h1>
+			<section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography tsd-comment-shorttext">
 					<div class="lead">
 						<p>The KeyRing provides an interface that allows you to generate
 							and store a pair of ed25519 keys, as well as sign and
 						verify ed25519 signatures.</p>
-					</div>
+						</div><p>It takes a directory as the only argument of the constructor.
+						It will create a new keyring in this directory or load the keyring
+					from the directory if it is already present.</p>
+					<p>Keyrings can only be used with one coordinator. You can not connect
+						to two different  coordinators with one keyring, you must generate
+					a new keyring for each coordinator.</p>
+					<p>Example Usage:</p>
+					<pre><code class="language-ts"><span class="hljs-keyword">const</span> keyring = <span class="hljs-keyword">new</span> KeyRing(<span class="hljs-string">&quot;./keyring&quot;</span>);
+
+<span class="hljs-comment">// If you want to perform operations with the keyring, wait for the ready event.</span>
+  keyring.on(<span class="hljs-string">&quot;ready&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> signed = keyring.sign(keyring.getPub());
+  <span class="hljs-keyword">const</span> verified = keyring.verify(keyring.getPub(), signed, keyring.getPub());
+
+  <span class="hljs-keyword">if</span> (verified) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;The signature is verified!&quot;</span>);
+  }
+});
+
+  keyring.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-function">(<span class="hljs-params">error: <span class="hljs-built_in">Error</span></span>) =&gt;</span> {
+    <span class="hljs-comment">// do something with the error</span>
+  });</code></pre>
+					<p>Note that the sign() and verify() functions take uint8 arrays.
+						If you need to convert hex strings into Uint8 arrays, use the
+					helper functions in the Utils class.</p>
+					</div><div class="tsd-comment tsd-typography tsd-comment-text">
 					<p>It takes a directory as the only argument of the constructor.
 						It will create a new keyring in this directory or load the keyring
 					from the directory if it is already present.</p>
@@ -94,8 +127,7 @@
 					<p>Note that the sign() and verify() functions take uint8 arrays.
 						If you need to convert hex strings into Uint8 arrays, use the
 					helper functions in the Utils class.</p>
-				</div>
-			</section>
+			</div></section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -110,7 +142,6 @@
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
@@ -128,10 +159,10 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#getcert" class="tsd-kind-icon">get<wbr>Cert</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#getkeyfolder" class="tsd-kind-icon">get<wbr>Key<wbr>Folder</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#getpriv" class="tsd-kind-icon">get<wbr>Priv</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#getpub" class="tsd-kind-icon">get<wbr>Pub</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#getcert" class="tsd-kind-icon">getCert</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#getkeyfolder" class="tsd-kind-icon">getKeyFolder</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#getpriv" class="tsd-kind-icon">getPriv</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#getpub" class="tsd-kind-icon">getPub</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#init" class="tsd-kind-icon">init</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#sign" class="tsd-kind-icon">sign</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#verify" class="tsd-kind-icon">verify</a></li>
@@ -152,22 +183,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/KeyRing.ts#L90">src/KeyRing.ts:90</a></li>
+									<li>Defined in src/KeyRing.ts:90</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>keyFolder: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
+									<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 										<div class="lead">
 											<p>The folder where you want the keys to be saved.
 												If the folder does not exist, it will be created.
 											Keys are saved as utf8 encoded hex strings on the disk.</p>
-										</div>
-									</div>
+									</div></div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="keyring.html" class="tsd-signature-type">KeyRing</a></h4>
@@ -188,15 +216,28 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/KeyRing.ts#L43">src/KeyRing.ts:43</a></li>
+									<li>Defined in src/KeyRing.ts:43</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>This is emitted whenever the keyring is done initializing. In the initialization
 										process, it will either load or create the key folder and key files at the
 									specified path.</p>
-								</div>
+								</div><p>Example:</p>
+								<pre><code class="language-ts">  keyring.on(<span class="hljs-string">&quot;ready&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> signed = keyring.sign(keyring.getPub());
+  <span class="hljs-keyword">const</span> verified = keyring.verify(keyring.getPub(), signed, keyring.getPub());
+
+  <span class="hljs-keyword">if</span> (verified) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;The signature is verified!&quot;</span>);
+  }
+});
+
+  keyring.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-function">(<span class="hljs-params">error: <span class="hljs-built_in">Error</span></span>) =&gt;</span> {
+    <span class="hljs-comment">// do something with the error</span>
+  });</code></pre>
+								</div><div class="tsd-comment tsd-typography tsd-comment-text">
 								<p>Example:</p>
 								<pre><code class="language-ts">  keyring.on(<span class="hljs-string">&quot;ready&quot;</span>, <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> signed = keyring.sign(keyring.getPub());
@@ -234,15 +275,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/KeyRing.ts#L156">src/KeyRing.ts:156</a></li>
+									<li>Defined in src/KeyRing.ts:156</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Get the current cert, if there is one. There will not be a cert if the keyring has never been used to connect to a cordinator before.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
+							</div></div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
 							<p>The cert, or null.</p>
 						</li>
 					</ul>
@@ -257,14 +300,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/KeyRing.ts#L147">src/KeyRing.ts:147</a></li>
+									<li>Defined in src/KeyRing.ts:147</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Get the keyring directory path.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>The key folder path.</p>
 						</li>
@@ -280,14 +322,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/KeyRing.ts#L222">src/KeyRing.ts:222</a></li>
+									<li>Defined in src/KeyRing.ts:222</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Get the private key.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span></h4>
 							<p>The public key.</p>
 						</li>
@@ -303,14 +344,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/KeyRing.ts#L138">src/KeyRing.ts:138</a></li>
+									<li>Defined in src/KeyRing.ts:138</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Get the public key.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span></h4>
 							<p>The public key.</p>
 						</li>
@@ -326,14 +366,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/KeyRing.ts#L163">src/KeyRing.ts:163</a></li>
+									<li>Defined in src/KeyRing.ts:163</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Re-initializes the keyring. This may be useful if you&#39;ve made changes to the key files on disk and want them to update.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -348,19 +387,18 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/KeyRing.ts#L113">src/KeyRing.ts:113</a></li>
+									<li>Defined in src/KeyRing.ts:113</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Signs a message with the keyring private key.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>message: <span class="tsd-signature-type">Uint8Array</span></h5>
-									<div class="tsd-comment tsd-typography">
+									<div class="tsd-comment tsd-typography tsd-comment-text">
 										<p>The message to sign.</p>
 									</div>
 								</li>
@@ -380,31 +418,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/81cefdf/src/KeyRing.ts#L125">src/KeyRing.ts:125</a></li>
+									<li>Defined in src/KeyRing.ts:125</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
 								<div class="lead">
 									<p>Verifies a message signature is valid for a given public key.</p>
-								</div>
-							</div>
+							</div></div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>message: <span class="tsd-signature-type">Uint8Array</span></h5>
-									<div class="tsd-comment tsd-typography">
+									<div class="tsd-comment tsd-typography tsd-comment-text">
 										<p>The message to sign.</p>
 									</div>
 								</li>
 								<li>
 									<h5>signature: <span class="tsd-signature-type">Uint8Array</span></h5>
-									<div class="tsd-comment tsd-typography">
+									<div class="tsd-comment tsd-typography tsd-comment-text">
 										<p>The signature to verify.</p>
 									</div>
 								</li>
 								<li>
 									<h5>publicKey: <span class="tsd-signature-type">Uint8Array</span></h5>
-									<div class="tsd-comment tsd-typography">
+									<div class="tsd-comment tsd-typography tsd-comment-text">
 										<p>The public key to verify against.</p>
 									</div>
 								</li>
@@ -415,23 +452,17 @@
 					</ul>
 				</section>
 			</section>
+			<!--{&quot;options&quot;:&quot;typedoc.json&quot;,&quot;tsconfig&quot;:&quot;/home/ender/Code/libkarai-js&quot;,&quot;inputFiles&quot;:[&quot;/home/ender/Code/libkarai-js/src/Channel.ts&quot;,&quot;/home/ender/Code/libkarai-js/src/KeyRing.ts&quot;,&quot;/home/ender/Code/libkarai-js/src/Utils.ts&quot;,&quot;/home/ender/Code/libkarai-js/src/index.ts&quot;],&quot;mode&quot;:0,&quot;includeDeclarations&quot;:false,&quot;entryPoint&quot;:&quot;&quot;,&quot;exclude&quot;:[],&quot;externalPattern&quot;:[],&quot;excludeExternals&quot;:true,&quot;excludeNotExported&quot;:true,&quot;excludeNotDocumented&quot;:false,&quot;excludePrivate&quot;:true,&quot;excludeProtected&quot;:false,&quot;ignoreCompilerErrors&quot;:false,&quot;disableSources&quot;:false,&quot;includes&quot;:&quot;&quot;,&quot;media&quot;:&quot;&quot;,&quot;out&quot;:&quot;docs&quot;,&quot;json&quot;:&quot;&quot;,&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;name&quot;:&quot;&quot;,&quot;includeVersion&quot;:false,&quot;excludeTags&quot;:[],&quot;readme&quot;:&quot;&quot;,&quot;defaultCategory&quot;:&quot;Other&quot;,&quot;categoryOrder&quot;:[],&quot;categorizeByGroup&quot;:true,&quot;gitRevision&quot;:&quot;&quot;,&quot;gitRemote&quot;:&quot;origin&quot;,&quot;gaID&quot;:&quot;&quot;,&quot;gaSite&quot;:&quot;auto&quot;,&quot;hideGenerator&quot;:false,&quot;toc&quot;:[],&quot;disableOutputCheck&quot;:false,&quot;help&quot;:false,&quot;version&quot;:false,&quot;plugin&quot;:[],&quot;logger&quot;:&quot;console&quot;,&quot;listInvalidSymbolLinks&quot;:false,&quot;links&quot;:[{&quot;label&quot;:&quot;GitHub&quot;,&quot;url&quot;:&quot;https://github.com/karai/libkarai-js&quot;},{&quot;label&quot;:&quot;Karai Homepage&quot;,&quot;url&quot;:&quot;https://karai.io/&quot;}],&quot;outline&quot;:[{&quot;KeyRing&quot;:&quot;./classes/keyring&quot;,&quot;Channel&quot;:&quot;./classes/channel&quot;,&quot;Utils&quot;:&quot;./classes/utils&quot;}]}-->
 		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
-					</li>
-				</ul>
-			</nav>
+		<div class="col-2 col-menu secondary-menu">
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class">
+					<li class=" tsd-kind-class root">
 						<a href="channel.html" class="tsd-kind-icon">Channel</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class="current tsd-kind-class root">
 						<a href="keyring.html" class="tsd-kind-icon">Key<wbr>Ring</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
@@ -465,19 +496,19 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
+					<li class=" tsd-kind-class root">
 						<a href="utils.html" class="tsd-kind-icon">Utils</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface root">
 						<a href="../interfaces/ichannelinfo.html" class="tsd-kind-icon">IChannel<wbr>Info</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface root">
 						<a href="../interfaces/icoordinator.html" class="tsd-kind-icon">ICoordinator</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface root">
 						<a href="../interfaces/icoordinatorinfo.html" class="tsd-kind-icon">ICoordinator<wbr>Info</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface root">
 						<a href="../interfaces/itransactions.html" class="tsd-kind-icon">ITransactions</a>
 					</li>
 				</ul>
@@ -486,27 +517,12 @@
 	</div>
 </div>
 <footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
-			</ul>
-		</div>
-	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
