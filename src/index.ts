@@ -6,5 +6,6 @@
 
 import { Channel } from "./Channel";
 import { KeyRing } from "./KeyRing";
+import { Utils } from "./Utils";
 
-export { Channel, KeyRing };
+export { Channel, KeyRing, Utils };

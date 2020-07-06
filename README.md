@@ -2,7 +2,11 @@
 
 A library to interact with karai channels in javascript.
 
-This library provides three exported classes. First, KeyRing, which you will initialize before the channel. This will contain your public and private keys as well as signing and verifying methods. Second, the Channel class will be initialized which takes the keyring as an argument. Third, there is a Utils class that contains some useful functions for converting between hex string and Uint8 array types.
+This library provides three exported classes.
+
+- KeyRing class, which contains a pair of ed25519 keys and sign / verify methods
+- Channel class, which you can use to interact with a channel
+- Utils class, which contains a couple useful type conversion functions
 
 ## Install
 

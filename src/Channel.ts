@@ -59,6 +59,28 @@ interface ITransactions {
 /**
  * The Channel provides an interface that allows you to perform actions on karai channels.
  *
+ * The Channel class requires a keyring as a parameter for the constructor, so you'll have to create
+ * a keyring first.
+ *
+ * You must listen for the `ready` event before doing anything with the channel.
+ *
+ * ## Example Usage:
+ * ```ts
+ * import { Channel, KeyRing, Utils } from 'libkarai-js';
+ *
+ * const keyring = new KeyRing("./keyring");
+ * const channel = new Channel("ws://zeus.karai.io:4200", keyring);
+ *
+ * channel.on("ready", async () => {
+ *   console.log("Channel info: ", channel.info());
+ *   console.log("My public key is " + Utils.toHexString(keyring.getPub()));
+ * });
+ *
+ * channel.on("error", async (error) => {
+ *   // handle the error
+ * });
+ *
+ * ```
  * @noInheritDoc
  */
 export class Channel extends EventEmitter {
@@ -185,25 +207,13 @@ export class Channel extends EventEmitter {
           this.signedPubKey = msg;
         });
         this.sendMessage(`JOIN`, Utils.toHexString(this.keyRing!.getPub()));
-
-        let timeout = 1;
-        while (this.subscription) {
-          await Utils.sleep(timeout);
-          timeout *= 2;
-        }
-        timeout = 1;
+        await this.untilReceived();
 
         this.subscribe("PUBK", (msg: string) => {
           this.serverPubKey = msg;
         });
         this.sendMessage("PUBK");
-
-        timeout = 1;
-        while (this.subscription) {
-          await Utils.sleep(timeout);
-          timeout *= 2;
-        }
-        timeout = 1;
+        await this.untilReceived();
 
         if (
           this.keyRing!.verify(
@@ -238,26 +248,14 @@ export class Channel extends EventEmitter {
             this.clientID = parts[2];
           }
         });
-        this.sendMessage(`JOIN`, Utils.toHexString(this.keyRing!.getPub()));
-
-        let timeout = 1;
-        while (this.subscription) {
-          await Utils.sleep(timeout);
-          timeout *= 2;
-        }
-        timeout = 1;
+        this.sendMessage("JOIN", Utils.toHexString(this.keyRing!.getPub()));
+        await this.untilReceived();
 
         this.subscribe("PUBK", (msg: string) => {
           this.serverPubKey = msg;
         });
         this.sendMessage("PUBK");
-
-        timeout = 1;
-        while (this.subscription) {
-          await Utils.sleep(timeout);
-          timeout *= 2;
-        }
-        timeout = 1;
+        await this.untilReceived();
 
         this.emit("ready");
       }
@@ -298,7 +296,9 @@ export class Channel extends EventEmitter {
 
   private async sendMessage(type: string, data: string = ""): Promise<void> {
     if (!this.ws) {
-      throw new Error("Can't call this until the ready event is emitted!");
+      throw new Error(
+        "Can't call this untilReceived the ready event is emitted!"
+      );
     } else {
       this.getWS().send(type + " " + data);
     }
@@ -313,6 +313,14 @@ export class Channel extends EventEmitter {
       this.initWS();
     } catch (err) {
       this.emit("error", err);
+    }
+  }
+
+  private async untilReceived() {
+    let timeout = 1;
+    while (this.subscription !== null) {
+      await Utils.sleep(timeout);
+      timeout *= 2;
     }
   }
 }

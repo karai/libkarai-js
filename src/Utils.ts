@@ -1,3 +1,10 @@
+/**
+ * The Utils class provides a few helpful type conversion functions for
+ * working with ed25519 keys. You can convert to and from a valid hex string
+ * to a Uint8 Array in order to easily work with the signatures sent from the
+ * coordinator.
+ */
+
 export class Utils {
   /**
    * Convert hex data encoded as a Uint8 Array to string.
