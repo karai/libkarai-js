@@ -165,6 +165,11 @@ export class Channel extends EventEmitter {
     this.init();
   }
 
+  /**
+   * Get the coordinator peer ID.
+   *
+   * @returns - The info of the connected channel.
+   */
   public info(): IChannelInfo {
     return {
       cert: Utils.toHexString(this.keyRing.getCert()!),
