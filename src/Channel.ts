@@ -166,7 +166,7 @@ export class Channel extends EventEmitter {
   }
 
   /**
-   * Get the coordinator peer ID.
+   * Get the channel info.
    *
    * @returns - The info of the connected channel.
    */
