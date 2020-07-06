@@ -105,9 +105,6 @@ export class KeyRing extends EventEmitter {
     super();
 
     this.memoryOnly = keyFolder === ":memory:";
-
-    console.log(this.memoryOnly);
-
     this.init = this.init.bind(this);
     this.cert = null;
     this.keyFolder = keyFolder;
