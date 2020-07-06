@@ -6,6 +6,17 @@ import { KeyRing } from "./KeyRing";
 import { Utils } from "./Utils";
 
 /**
+ * The ITransaction interface contains the type for transactions on the
+ * karai channel.
+ */
+interface ITransaction {
+  tx_type: number;
+  tx_hash: string;
+  tx_prev: string;
+  tx_data: any[] | string;
+}
+
+/**
  * @ignore
  */
 interface ISubscription {
@@ -296,9 +307,7 @@ export class Channel extends EventEmitter {
     }
   }
 
-  private async returnChannelTransactions(): Promise<any[]> {
-    console.log(this.host);
-
+  private async returnChannelTransactions(): Promise<ITransaction[]> {
     const endpoint = "/api/v1/transactions";
     const res = await ax.get(`${this.host}${endpoint}`);
 

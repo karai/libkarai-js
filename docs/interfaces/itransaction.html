@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IChannelInfo | libkarai-js</title>
+	<title>ITransaction | libkarai-js</title>
 	<meta name="description" content="Documentation for libkarai-js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,10 +52,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="ichannelinfo.html">IChannelInfo</a>
+					<a href="itransaction.html">ITransaction</a>
 				</li>
 			</ul>
-			<h1>Interface IChannelInfo</h1>
+			<h1>Interface ITransaction</h1>
 		</div>
 	</div>
 </header>
@@ -65,7 +65,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The IChannelinfo interface contains the type for the channel.info() response.</p>
+						<p>The ITransaction interface contains the type for transactions on the
+						karai channel.</p>
 					</div>
 				</div>
 			</section>
@@ -73,7 +74,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IChannelInfo</span>
+						<span class="target">ITransaction</span>
 					</li>
 				</ul>
 			</section>
@@ -84,9 +85,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichannelinfo.html#cert" class="tsd-kind-icon">cert</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichannelinfo.html#clientid" class="tsd-kind-icon">clientID</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="ichannelinfo.html#host" class="tsd-kind-icon">host</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itransaction.html#tx_data" class="tsd-kind-icon">tx_<wbr>data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itransaction.html#tx_hash" class="tsd-kind-icon">tx_<wbr>hash</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itransaction.html#tx_prev" class="tsd-kind-icon">tx_<wbr>prev</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="itransaction.html#tx_type" class="tsd-kind-icon">tx_<wbr>type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,32 +97,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="cert" class="tsd-anchor"></a>
-					<h3>cert</h3>
-					<div class="tsd-signature tsd-kind-icon">cert<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="tx_data" class="tsd-anchor"></a>
+					<h3>tx_<wbr>data</h3>
+					<div class="tsd-signature tsd-kind-icon">tx_<wbr>data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/a984d81/src/Channel.ts#L32">src/Channel.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/a984d81/src/Channel.ts#L16">src/Channel.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="clientid" class="tsd-anchor"></a>
-					<h3>clientID</h3>
-					<div class="tsd-signature tsd-kind-icon">clientID<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="tx_hash" class="tsd-anchor"></a>
+					<h3>tx_<wbr>hash</h3>
+					<div class="tsd-signature tsd-kind-icon">tx_<wbr>hash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/a984d81/src/Channel.ts#L33">src/Channel.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/a984d81/src/Channel.ts#L14">src/Channel.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="host" class="tsd-anchor"></a>
-					<h3>host</h3>
-					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="tx_prev" class="tsd-anchor"></a>
+					<h3>tx_<wbr>prev</h3>
+					<div class="tsd-signature tsd-kind-icon">tx_<wbr>prev<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/a984d81/src/Channel.ts#L34">src/Channel.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/a984d81/src/Channel.ts#L15">src/Channel.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="tx_type" class="tsd-anchor"></a>
+					<h3>tx_<wbr>type</h3>
+					<div class="tsd-signature tsd-kind-icon">tx_<wbr>type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/a984d81/src/Channel.ts#L13">src/Channel.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -145,33 +157,36 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/utils.html" class="tsd-kind-icon">Utils</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="ichannelinfo.html" class="tsd-kind-icon">IChannel<wbr>Info</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ichannelinfo.html#cert" class="tsd-kind-icon">cert</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ichannelinfo.html#clientid" class="tsd-kind-icon">clientID</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="ichannelinfo.html#host" class="tsd-kind-icon">host</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="icoordinator.html" class="tsd-kind-icon">ICoordinator</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="icoordinatorinfo.html" class="tsd-kind-icon">ICoordinator<wbr>Info</a>
 					</li>
-					<li class=" tsd-kind-interface">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
 						<a href="itransaction.html" class="tsd-kind-icon">ITransaction</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="itransaction.html#tx_data" class="tsd-kind-icon">tx_<wbr>data</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="itransaction.html#tx_hash" class="tsd-kind-icon">tx_<wbr>hash</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="itransaction.html#tx_prev" class="tsd-kind-icon">tx_<wbr>prev</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="itransaction.html#tx_type" class="tsd-kind-icon">tx_<wbr>type</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="itransactions.html" class="tsd-kind-icon">ITransactions</a>
 					</li>
