@@ -1,6 +1,6 @@
 {
   "name": "libkarai-js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A library for working with karai channels",
   "main": "./dist/index.js",
   "author": "Extra <extrahash@protonmail.com>",
