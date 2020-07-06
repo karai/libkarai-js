@@ -23,7 +23,7 @@ You can find a link to the documentation [here](https://karai.io/libkarai-js/)
 ## Quickstart
 
 ```ts
-import { Channel, KeyRing, Utils } from "libkarai";
+import { Channel, KeyRing, Utils } from "libkarai-js";
 
 const keyring = new KeyRing("./keyring");
 const channel = new Channel("ws://zeus.karai.io:4200", keyring);
