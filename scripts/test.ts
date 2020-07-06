@@ -12,6 +12,7 @@ channel.on("ready", async () => {
   const transactions = await channel.transactions.retrieve();
 
   for (const tx of transactions) {
+    console.log("tx");
     console.log(tx.tx_data);
   }
 });

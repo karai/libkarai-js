@@ -13,7 +13,7 @@ interface ITransaction {
   tx_type: number;
   tx_hash: string;
   tx_prev: string;
-  tx_data: any[] | string;
+  tx_data: any[] | string | undefined;
 }
 
 /**
@@ -64,7 +64,7 @@ interface ITransactions {
    *
    * @returns - The channel transactions as an array.
    */
-  retrieve: () => Promise<any[]>;
+  retrieve: () => Promise<ITransaction[]>;
 }
 
 /**
@@ -159,6 +159,7 @@ export class Channel extends EventEmitter {
    */
   constructor(host: string, keyRing: KeyRing) {
     super();
+    console.log(host);
     this.host = host;
     this.keyRing = keyRing;
     this.subscription = null;
