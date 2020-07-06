@@ -1,6 +1,5 @@
 import ax from "axios";
 import { EventEmitter } from "events";
-import fs from "fs";
 import WebSocket, { MessageEvent } from "isomorphic-ws";
 import { KeyRing } from "./KeyRing";
 import { Utils } from "./Utils";

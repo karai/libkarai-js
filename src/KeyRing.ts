@@ -185,8 +185,6 @@ export class KeyRing extends EventEmitter {
 
   /**
    * Sets the current cert. This is used internally by the Channel class.
-   *
-   * @returns The cert, or null.
    */
   public setCert(cert: Uint8Array): void {
     if (!this.memoryOnly) {
@@ -196,8 +194,6 @@ export class KeyRing extends EventEmitter {
     }
 
     this.cert = cert;
-    console.log("CERT");
-    console.log(Utils.toHexString(cert));
   }
 
   /**
@@ -212,12 +208,6 @@ export class KeyRing extends EventEmitter {
       if (!this.providedKey) {
         this.providedKey = Utils.toHexString(this.signKeyPair.secretKey);
       }
-
-      console.log("PUBLIC KEY");
-      console.log(Utils.toHexString(this.signKeyPair.publicKey));
-
-      console.log("PRIVATE KEY");
-      console.log(Utils.toHexString(this.signKeyPair.secretKey));
 
       this.emit("ready");
       return;
