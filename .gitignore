@@ -5,5 +5,3 @@ dist
 .env
 keyring
 *.tgz
-./docs
-docs
