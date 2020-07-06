@@ -41,6 +41,22 @@ export declare interface KeyRing {
    * @event
    */
   on(event: "ready", callback: () => void): this;
+
+  /**
+   * This is emitted whenever the keyring experiences an error initializing.
+   *
+   * Example:
+   *
+   * ```ts
+   *
+   *   keyring.on("error", (error: Error) => {
+   *     // do something with the error
+   *   });
+   * ```
+   *
+   * @event
+   */
+  on(event: "error", callback: (error: Error) => void): this;
 }
 
 /**
