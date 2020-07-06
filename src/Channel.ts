@@ -139,7 +139,7 @@ export class Channel extends EventEmitter {
    * The coordinator object contains the methods for interacting with the coordinator.
    */
   public coordinator: ICoordinator;
-
+  private secure: boolean;
   private host: string;
   private keyRing: KeyRing;
   private ws: WebSocket | null;
@@ -149,6 +149,8 @@ export class Channel extends EventEmitter {
   private clientID: string | null;
   private coordID: string | null;
   private coordVersion: string | null;
+  private wsPrefix: string;
+  private httpPrefix: string;
 
   /**
    * @param host The url of the host.
@@ -156,9 +158,10 @@ export class Channel extends EventEmitter {
    * @param keyRing  A KeyRing object to use.
    *
    */
-  constructor(host: string, keyRing: KeyRing) {
+  constructor(host: string, keyRing: KeyRing, secure: boolean = true) {
     super();
     console.log(host);
+    this.secure = secure;
     this.host = host;
     this.keyRing = keyRing;
     this.subscription = null;
@@ -169,6 +172,17 @@ export class Channel extends EventEmitter {
     this.coordVersion = null;
     this.signedPubKey = null;
     this.coordVersion = null;
+
+    if (!this.secure) {
+      console.warn(
+        "Warning! Insecure connections are dangeorus. You should only use them for development."
+      );
+      this.wsPrefix = "ws://";
+      this.httpPrefix = "http://";
+    } else {
+      this.wsPrefix = "wss://";
+      this.httpPrefix = "https://";
+    }
 
     this.transactions = {
       retrieve: this.returnChannelTransactions.bind(this),
@@ -190,7 +204,7 @@ export class Channel extends EventEmitter {
     return {
       cert: Utils.toHexString(this.keyRing.getCert()!),
       clientID: this.getClientID(),
-      host: this.getHost(),
+      host: this.getHost(true),
     };
   }
 
@@ -219,8 +233,12 @@ export class Channel extends EventEmitter {
    * @returns - The coordinator's hostname / IP.
    */
 
-  private getHost(): string {
-    return this.host;
+  private getHost(websocket: boolean): string {
+    if (websocket) {
+      return this.wsPrefix + this.host;
+    } else {
+      return this.httpPrefix + this.host;
+    }
   }
 
   private retrieveCoord() {
@@ -245,11 +263,12 @@ export class Channel extends EventEmitter {
 
   private initWS(): void {
     const endpoint = "/api/v1/channel";
-    const ws = new WebSocket(`${this.host!}${endpoint}`);
+    const ws = new WebSocket(`${this.getHost(true)!}${endpoint}`);
 
     ws.onerror = (event: WebSocket.ErrorEvent) => {
       this.emit("error", event);
     };
+
     ws.onmessage = (event: MessageEvent) => {
       if (this.subscription) {
         this.subscription.callback(event.data);
@@ -320,7 +339,7 @@ export class Channel extends EventEmitter {
 
   private async returnCoordPeerID(): Promise<string> {
     const endpoint = "/api/v1/peer";
-    const res = await ax.get(`${this.host}${endpoint}`);
+    const res = await ax.get(`${this.getHost(false)}${endpoint}`);
     if (!res.data || !res.data.p2p_peer_ID) {
       console.error(res);
       throw new Error("Unexpected response from " + endpoint);
@@ -331,14 +350,14 @@ export class Channel extends EventEmitter {
 
   private async returnChannelTransactions(): Promise<ITransaction[]> {
     const endpoint = "/api/v1/transactions";
-    const res = await ax.get(`${this.host}${endpoint}`);
+    const res = await ax.get(`${this.getHost(false)}${endpoint}`);
 
     return res.data;
   }
 
   private async checkOnline(): Promise<void> {
     const endpoint = "/api/v1/version";
-    const res = await ax.get(`${this.host}${endpoint}`);
+    const res = await ax.get(`${this.getHost(false)}${endpoint}`);
     if (!res.data) {
       throw new Error("Coordinator is not online!");
     } else {
