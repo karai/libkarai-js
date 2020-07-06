@@ -39,7 +39,7 @@ setTimeout(() => {
 
 keyring.on("ready", () => {
   console.log(
-    normalizeStr('keyring.on("ready"):', 28) +
+    normalizeStr(`keyring.on("ready"):`, 28) +
       normalizeStr("passed", 8) +
       chalk.green.bold("✔️")
   );
@@ -48,7 +48,7 @@ keyring.on("ready", () => {
 
 channel.on("ready", async () => {
   console.log(
-    normalizeStr('channel.on("ready"):', 28) +
+    normalizeStr(`channel.on("ready"):`, 28) +
       normalizeStr("passed", 8) +
       chalk.green.bold("✔️")
   );
