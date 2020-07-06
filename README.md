@@ -22,7 +22,7 @@ keyring.on("error", (error: Error) => {
   // do something with the error
 });
 
-// the channel will automatically wait for the keyring ready event 
+// the channel will automatically wait for the keyring ready event
 // of the keyring it is passed.
 channel.on("ready", async () => {
   console.log("Channel is connected!");
@@ -38,5 +38,4 @@ channel.on("ready", async () => {
 channel.on("error", (error: Error) => {
   // do something with the error
 });
-
 ```
