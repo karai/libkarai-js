@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Channel | libkarai-js</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for libkarai-js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,11 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<ul class="results-priority" style="display:none">
-					</ul>
 					<a href="../index.html" class="title">libkarai-js</a>
-					&emsp;<a href="https://github.com/karai/libkarai-js" class="title">GitHub</a>
-					&emsp;<a href="https://karai.io/" class="title">Karai Homepage</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -53,48 +49,24 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
 					<a href="channel.html">Channel</a>
 				</li>
 			</ul>
+			<h1>Class Channel</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
-		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation outline primary">
-				<a style="margin-left:0em" href="../globals.html">Globals</a>
-				<ul style="display:none">
-					{&quot;KeyRing&quot;:&quot;./classes/keyring&quot;,&quot;Channel&quot;:&quot;./classes/channel&quot;,&quot;Utils&quot;:&quot;./classes/utils&quot;}
-				</ul>
-			</nav>
-		</div>
-		<div class="col-7 offset-3 col-content">
-			<h1>Class Channel</h1>
-			<section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography tsd-comment-shorttext">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>The Channel provides an interface that allows you to perform actions on karai channels.</p>
-						</div><p>The Channel class requires a keyring as a parameter for the constructor, so you&#39;ll have to create
-					a keyring first.</p>
-					<p>You must listen for the <code>ready</code> event before doing anything with the channel.</p>
-					<a href="#example-usage" id="example-usage" style="color: inherit; text-decoration: none;">
-						<h2>Example Usage:</h2>
-					</a>
-					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Channel, KeyRing, Utils } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;libkarai-js&#x27;</span>;
-
-<span class="hljs-keyword">const</span> keyring = <span class="hljs-keyword">new</span> KeyRing(<span class="hljs-string">&quot;./keyring&quot;</span>);
-<span class="hljs-keyword">const</span> channel = <span class="hljs-keyword">new</span> Channel(<span class="hljs-string">&quot;ws://zeus.karai.io:4200&quot;</span>, keyring);
-
-channel.on(<span class="hljs-string">&quot;ready&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Channel info: &quot;</span>, channel.info());
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;My public key is &quot;</span> + Utils.toHexString(keyring.getPub()));
-});
-
-channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-keyword">async</span> (error) =&gt; {
-  <span class="hljs-comment">// handle the error</span>
-});
-</code></pre>
-					</div><div class="tsd-comment tsd-typography tsd-comment-text">
+					</div>
 					<p>The Channel class requires a keyring as a parameter for the constructor, so you&#39;ll have to create
 					a keyring first.</p>
 					<p>You must listen for the <code>ready</code> event before doing anything with the channel.</p>
@@ -115,7 +87,8 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
   <span class="hljs-comment">// handle the error</span>
 });
 </code></pre>
-			</div></section>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -130,6 +103,7 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
@@ -172,24 +146,28 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/Channel.ts:125</li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/82f8ecb/src/Channel.ts#L125">src/Channel.ts:125</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>host: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The url of the host.</p>
-									</div></div>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5>keyRing: <a href="keyring.html" class="tsd-signature-type">KeyRing</a></h5>
-									<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>A KeyRing object to use.</p>
-									</div></div>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="channel.html" class="tsd-signature-type">Channel</a></h4>
@@ -203,26 +181,21 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 					<a name="on" class="tsd-anchor"></a>
 					<h3>on</h3>
 					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"ready"</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"ready"</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in src/Channel.ts:104</li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/82f8ecb/src/Channel.ts#L104">src/Channel.ts:104</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>This is emitted whenever the channel finishes the handshake process. You must
 									wait for it to do any channel operations.</p>
-								</div><p>Example:</p>
-								<pre><code class="language-ts">channel.on(<span class="hljs-string">&#x27;ready&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; {
-    <span class="hljs-comment">// do something with the channel</span>
-    <span class="hljs-keyword">const</span> transactions = <span class="hljs-keyword">await</span> channel.transactions.retrieve();
-});</code></pre>
-								</div><div class="tsd-comment tsd-typography tsd-comment-text">
+								</div>
 								<p>Example:</p>
 								<pre><code class="language-ts">channel.on(<span class="hljs-string">&#x27;ready&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; {
     <span class="hljs-comment">// do something with the channel</span>
@@ -235,9 +208,9 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 									<h5>event: <span class="tsd-signature-type">"ready"</span></h5>
 								</li>
 								<li>
-									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<h5>callback: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
+										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
 												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
@@ -263,13 +236,14 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 					<div class="tsd-signature tsd-kind-icon">coordinator<span class="tsd-signature-symbol">:</span> <a href="../interfaces/icoordinator.html" class="tsd-signature-type">ICoordinator</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/Channel.ts:115</li>
+							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/82f8ecb/src/Channel.ts#L115">src/Channel.ts:115</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The coordinator object contains the methods for interacting with the coordinator.</p>
-					</div></div>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="transactions" class="tsd-anchor"></a>
@@ -277,13 +251,14 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 					<div class="tsd-signature tsd-kind-icon">transactions<span class="tsd-signature-symbol">:</span> <a href="../interfaces/itransactions.html" class="tsd-signature-type">ITransactions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/Channel.ts:111</li>
+							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/82f8ecb/src/Channel.ts#L111">src/Channel.ts:111</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The transactions object contains the methods for interacting with transactions.</p>
-					</div></div>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -298,7 +273,7 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/Channel.ts:157</li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/82f8ecb/src/Channel.ts#L157">src/Channel.ts:157</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/ichannelinfo.html" class="tsd-signature-type">IChannelInfo</a></h4>
@@ -306,14 +281,20 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 					</ul>
 				</section>
 			</section>
-			<!--{&quot;options&quot;:&quot;typedoc.json&quot;,&quot;tsconfig&quot;:&quot;/home/ender/Code/libkarai-js&quot;,&quot;inputFiles&quot;:[&quot;/home/ender/Code/libkarai-js/src/Channel.ts&quot;,&quot;/home/ender/Code/libkarai-js/src/KeyRing.ts&quot;,&quot;/home/ender/Code/libkarai-js/src/Utils.ts&quot;,&quot;/home/ender/Code/libkarai-js/src/index.ts&quot;],&quot;mode&quot;:0,&quot;includeDeclarations&quot;:false,&quot;entryPoint&quot;:&quot;&quot;,&quot;exclude&quot;:[],&quot;externalPattern&quot;:[],&quot;excludeExternals&quot;:true,&quot;excludeNotExported&quot;:true,&quot;excludeNotDocumented&quot;:false,&quot;excludePrivate&quot;:true,&quot;excludeProtected&quot;:false,&quot;ignoreCompilerErrors&quot;:false,&quot;disableSources&quot;:false,&quot;includes&quot;:&quot;&quot;,&quot;media&quot;:&quot;&quot;,&quot;out&quot;:&quot;docs&quot;,&quot;json&quot;:&quot;&quot;,&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;name&quot;:&quot;&quot;,&quot;includeVersion&quot;:false,&quot;excludeTags&quot;:[],&quot;readme&quot;:&quot;&quot;,&quot;defaultCategory&quot;:&quot;Other&quot;,&quot;categoryOrder&quot;:[],&quot;categorizeByGroup&quot;:true,&quot;gitRevision&quot;:&quot;&quot;,&quot;gitRemote&quot;:&quot;origin&quot;,&quot;gaID&quot;:&quot;&quot;,&quot;gaSite&quot;:&quot;auto&quot;,&quot;hideGenerator&quot;:false,&quot;toc&quot;:[],&quot;disableOutputCheck&quot;:false,&quot;help&quot;:false,&quot;version&quot;:false,&quot;plugin&quot;:[],&quot;logger&quot;:&quot;console&quot;,&quot;listInvalidSymbolLinks&quot;:false,&quot;links&quot;:[{&quot;label&quot;:&quot;GitHub&quot;,&quot;url&quot;:&quot;https://github.com/karai/libkarai-js&quot;},{&quot;label&quot;:&quot;Karai Homepage&quot;,&quot;url&quot;:&quot;https://karai.io/&quot;}],&quot;outline&quot;:[{&quot;KeyRing&quot;:&quot;./classes/keyring&quot;,&quot;Channel&quot;:&quot;./classes/channel&quot;,&quot;Utils&quot;:&quot;./classes/utils&quot;}]}-->
 		</div>
-		<div class="col-2 col-menu secondary-menu">
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class root">
+					<li class="current tsd-kind-class">
 						<a href="channel.html" class="tsd-kind-icon">Channel</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
@@ -335,22 +316,22 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class root">
+					<li class=" tsd-kind-class">
 						<a href="keyring.html" class="tsd-kind-icon">Key<wbr>Ring</a>
 					</li>
-					<li class=" tsd-kind-class root">
+					<li class=" tsd-kind-class">
 						<a href="utils.html" class="tsd-kind-icon">Utils</a>
 					</li>
-					<li class=" tsd-kind-interface root">
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/ichannelinfo.html" class="tsd-kind-icon">IChannel<wbr>Info</a>
 					</li>
-					<li class=" tsd-kind-interface root">
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/icoordinator.html" class="tsd-kind-icon">ICoordinator</a>
 					</li>
-					<li class=" tsd-kind-interface root">
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/icoordinatorinfo.html" class="tsd-kind-icon">ICoordinator<wbr>Info</a>
 					</li>
-					<li class=" tsd-kind-interface root">
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/itransactions.html" class="tsd-kind-icon">ITransactions</a>
 					</li>
 				</ul>
@@ -359,12 +340,27 @@ channel.on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs
 	</div>
 </div>
 <footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

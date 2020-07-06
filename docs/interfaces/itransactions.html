@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>ITransactions | libkarai-js</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for libkarai-js">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,11 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<ul class="results-priority" style="display:none">
-					</ul>
 					<a href="../index.html" class="title">libkarai-js</a>
-					&emsp;<a href="https://github.com/karai/libkarai-js" class="title">GitHub</a>
-					&emsp;<a href="https://karai.io/" class="title">Karai Homepage</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -53,28 +49,26 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
 					<a href="itransactions.html">ITransactions</a>
 				</li>
 			</ul>
+			<h1>Interface ITransactions</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
-		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation outline primary">
-				<a style="margin-left:0em" href="../globals.html">Globals</a>
-				<ul style="display:none">
-					{&quot;KeyRing&quot;:&quot;./classes/keyring&quot;,&quot;Channel&quot;:&quot;./classes/channel&quot;,&quot;Utils&quot;:&quot;./classes/utils&quot;}
-				</ul>
-			</nav>
-		</div>
-		<div class="col-7 offset-3 col-content">
-			<h1>Interface ITransactions</h1>
-			<section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography tsd-comment-shorttext">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>The ITransactions interface contains methods for dealing with transactions.</p>
-			</div></div></section>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -84,6 +78,7 @@
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
@@ -100,26 +95,28 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="retrieve" class="tsd-anchor"></a>
 					<h3>retrieve</h3>
-					<div class="tsd-signature tsd-kind-icon">retrieve<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">retrieve<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/Channel.ts:56</li>
+							<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/82f8ecb/src/Channel.ts#L56">src/Channel.ts:56</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Retrieves the transactions in the channel.</p>
-						</div></div><div class="tsd-comment tsd-typography tsd-comment-tags">
-						<dl class="tsd-comment-tags"><dt>returns</dt>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>returns</dt>
 							<dd><ul>
 									<li>The channel transactions as an array.</li>
 								</ul>
-						</dd></dl>
+							</dd>
+						</dl>
 					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
+							<li class="tsd-parameter-signature">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property">
 									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
@@ -133,32 +130,38 @@
 					</div>
 				</section>
 			</section>
-			<!--{&quot;options&quot;:&quot;typedoc.json&quot;,&quot;tsconfig&quot;:&quot;/home/ender/Code/libkarai-js&quot;,&quot;inputFiles&quot;:[&quot;/home/ender/Code/libkarai-js/src/Channel.ts&quot;,&quot;/home/ender/Code/libkarai-js/src/KeyRing.ts&quot;,&quot;/home/ender/Code/libkarai-js/src/Utils.ts&quot;,&quot;/home/ender/Code/libkarai-js/src/index.ts&quot;],&quot;mode&quot;:0,&quot;includeDeclarations&quot;:false,&quot;entryPoint&quot;:&quot;&quot;,&quot;exclude&quot;:[],&quot;externalPattern&quot;:[],&quot;excludeExternals&quot;:true,&quot;excludeNotExported&quot;:true,&quot;excludeNotDocumented&quot;:false,&quot;excludePrivate&quot;:true,&quot;excludeProtected&quot;:false,&quot;ignoreCompilerErrors&quot;:false,&quot;disableSources&quot;:false,&quot;includes&quot;:&quot;&quot;,&quot;media&quot;:&quot;&quot;,&quot;out&quot;:&quot;docs&quot;,&quot;json&quot;:&quot;&quot;,&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;name&quot;:&quot;&quot;,&quot;includeVersion&quot;:false,&quot;excludeTags&quot;:[],&quot;readme&quot;:&quot;&quot;,&quot;defaultCategory&quot;:&quot;Other&quot;,&quot;categoryOrder&quot;:[],&quot;categorizeByGroup&quot;:true,&quot;gitRevision&quot;:&quot;&quot;,&quot;gitRemote&quot;:&quot;origin&quot;,&quot;gaID&quot;:&quot;&quot;,&quot;gaSite&quot;:&quot;auto&quot;,&quot;hideGenerator&quot;:false,&quot;toc&quot;:[],&quot;disableOutputCheck&quot;:false,&quot;help&quot;:false,&quot;version&quot;:false,&quot;plugin&quot;:[],&quot;logger&quot;:&quot;console&quot;,&quot;listInvalidSymbolLinks&quot;:false,&quot;links&quot;:[{&quot;label&quot;:&quot;GitHub&quot;,&quot;url&quot;:&quot;https://github.com/karai/libkarai-js&quot;},{&quot;label&quot;:&quot;Karai Homepage&quot;,&quot;url&quot;:&quot;https://karai.io/&quot;}],&quot;outline&quot;:[{&quot;KeyRing&quot;:&quot;./classes/keyring&quot;,&quot;Channel&quot;:&quot;./classes/channel&quot;,&quot;Utils&quot;:&quot;./classes/utils&quot;}]}-->
 		</div>
-		<div class="col-2 col-menu secondary-menu">
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class root">
+					<li class=" tsd-kind-class">
 						<a href="../classes/channel.html" class="tsd-kind-icon">Channel</a>
 					</li>
-					<li class=" tsd-kind-class root">
+					<li class=" tsd-kind-class">
 						<a href="../classes/keyring.html" class="tsd-kind-icon">Key<wbr>Ring</a>
 					</li>
-					<li class=" tsd-kind-class root">
+					<li class=" tsd-kind-class">
 						<a href="../classes/utils.html" class="tsd-kind-icon">Utils</a>
 					</li>
-					<li class=" tsd-kind-interface root">
+					<li class=" tsd-kind-interface">
 						<a href="ichannelinfo.html" class="tsd-kind-icon">IChannel<wbr>Info</a>
 					</li>
-					<li class=" tsd-kind-interface root">
+					<li class=" tsd-kind-interface">
 						<a href="icoordinator.html" class="tsd-kind-icon">ICoordinator</a>
 					</li>
-					<li class=" tsd-kind-interface root">
+					<li class=" tsd-kind-interface">
 						<a href="icoordinatorinfo.html" class="tsd-kind-icon">ICoordinator<wbr>Info</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface root">
+					<li class="current tsd-kind-interface">
 						<a href="itransactions.html" class="tsd-kind-icon">ITransactions</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -174,12 +177,27 @@
 	</div>
 </div>
 <footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

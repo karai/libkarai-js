@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "node ./node_modules/typescript/bin/tsc",
-    "docs": "npx typedoc --theme ./node_modules/typedoc-neo-theme/bin/default --options typedoc.json",
+    "docs": "npx typedoc --options typedoc.json",
     "test": "ts-node ./scripts/test.ts",
     "prepack": "yarn build",
     "prettier": "node ./node_modules/prettier/bin-prettier.js '**/*.{ts,tsx,json,md}' --trailing-comma es5 --ignore-path .gitignore --arrow-parens always --write",
