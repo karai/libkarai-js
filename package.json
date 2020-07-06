@@ -37,5 +37,6 @@
     "axios": "^0.19.2",
     "tweetnacl": "^1.0.3",
     "ws": "^7.3.0"
-  }
+  },
+  "repository": "git@github.com:karai/libkarai-js.git"
 }
