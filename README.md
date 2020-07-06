@@ -33,7 +33,7 @@ channel.on("ready", async () => {
   console.log("My public key is " + Utils.toHexString(keyring.getPub()));
 });
 
-channel.on("error", (error: Error) => {
+channel.on("error", (error) => {
   // do something with the error
 });
 ```
