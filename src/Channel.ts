@@ -247,6 +247,9 @@ export class Channel extends EventEmitter {
     const endpoint = "/api/v1/channel";
     const ws = new WebSocket(`${this.host!}${endpoint}`);
 
+    ws.onerror = (event: WebSocket.ErrorEvent) => {
+      this.emit("error", event);
+    };
     ws.onmessage = (event: MessageEvent) => {
       if (this.subscription) {
         this.subscription.callback(event.data);
