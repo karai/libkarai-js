@@ -23,7 +23,6 @@
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "typedoc": "^0.17.8",
-    "typedoc-neo-theme": "^1.0.8",
     "typedoc-plugin-no-inherit": "^1.1.10",
     "typescript": "^3.9.6"
   },
