@@ -72,6 +72,10 @@
 					<p>It takes a directory as the only argument of the constructor.
 						It will create a new keyring in this directory or load the keyring
 					from the directory if it is already present.</p>
+					<p>It also takes the special string <code>:memory:</code> as a parameter to only
+						store the keys in memory, so this module an run in a browser.
+						Make sure you provide a way for the client to export the keys and
+					cert if you do this.</p>
 					<p>Keyrings can only be used with one coordinator. You can not connect
 						to two different  coordinators with one keyring, you must generate
 					a new keyring for each coordinator.</p>
@@ -133,6 +137,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#getpriv" class="tsd-kind-icon">get<wbr>Priv</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#getpub" class="tsd-kind-icon">get<wbr>Pub</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#init" class="tsd-kind-icon">init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#setcert" class="tsd-kind-icon">set<wbr>Cert</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#sign" class="tsd-kind-icon">sign</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="keyring.html#verify" class="tsd-kind-icon">verify</a></li>
 							</ul>
@@ -146,13 +151,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Key<wbr>Ring<span class="tsd-signature-symbol">(</span>keyFolder<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="keyring.html" class="tsd-signature-type">KeyRing</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Key<wbr>Ring<span class="tsd-signature-symbol">(</span>keyFolder<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, secretKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="keyring.html" class="tsd-signature-type">KeyRing</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/fd84008/src/KeyRing.ts#L90">src/KeyRing.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/f87c507/src/KeyRing.ts#L97">src/KeyRing.ts:97</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -168,6 +173,9 @@
 											Keys are saved as utf8 encoded hex strings on the disk.</p>
 										</div>
 									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> secretKey: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> = null</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="keyring.html" class="tsd-signature-type">KeyRing</a></h4>
@@ -188,7 +196,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/fd84008/src/KeyRing.ts#L43">src/KeyRing.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/f87c507/src/KeyRing.ts#L43">src/KeyRing.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -249,7 +257,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/fd84008/src/KeyRing.ts#L156">src/KeyRing.ts:156</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/f87c507/src/KeyRing.ts#L169">src/KeyRing.ts:169</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,7 +280,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/fd84008/src/KeyRing.ts#L147">src/KeyRing.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/f87c507/src/KeyRing.ts#L160">src/KeyRing.ts:160</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -295,7 +303,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/fd84008/src/KeyRing.ts#L222">src/KeyRing.ts:222</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/f87c507/src/KeyRing.ts#L271">src/KeyRing.ts:271</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -318,7 +326,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/fd84008/src/KeyRing.ts#L138">src/KeyRing.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/f87c507/src/KeyRing.ts#L151">src/KeyRing.ts:151</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -341,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/fd84008/src/KeyRing.ts#L163">src/KeyRing.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/f87c507/src/KeyRing.ts#L193">src/KeyRing.ts:193</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -350,6 +358,35 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setcert" class="tsd-anchor"></a>
+					<h3>set<wbr>Cert</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Cert<span class="tsd-signature-symbol">(</span>cert<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/f87c507/src/KeyRing.ts#L178">src/KeyRing.ts:178</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the current cert. This is used internally by the Channel class.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>cert: <span class="tsd-signature-type">Uint8Array</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<p>The cert, or null.</p>
 						</li>
 					</ul>
 				</section>
@@ -363,7 +400,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/fd84008/src/KeyRing.ts#L113">src/KeyRing.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/f87c507/src/KeyRing.ts#L126">src/KeyRing.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -395,7 +432,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/fd84008/src/KeyRing.ts#L125">src/KeyRing.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/karai/libkarai-js/blob/f87c507/src/KeyRing.ts#L138">src/KeyRing.ts:138</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -469,6 +506,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="keyring.html#init" class="tsd-kind-icon">init</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="keyring.html#setcert" class="tsd-kind-icon">set<wbr>Cert</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="keyring.html#sign" class="tsd-kind-icon">sign</a>

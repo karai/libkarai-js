@@ -1,6 +1,6 @@
 import { Channel, KeyRing, Utils } from "../src/index";
 
-const keyring = new KeyRing("./keyring");
+const keyring = new KeyRing(":memory:");
 const channel = new Channel("ws://zeus.karai.io:4200", keyring);
 
 channel.on("ready", async () => {

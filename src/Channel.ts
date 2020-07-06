@@ -266,9 +266,7 @@ export class Channel extends EventEmitter {
             if (type !== "CERT") {
               throw new Error("Invalid message from server: " + data);
             }
-            fs.writeFileSync(`${this.keyRing.getKeyFolder()}/cert`, data, {
-              encoding: "utf-8",
-            });
+            this.keyRing.setCert(Utils.fromHexString(data));
             ws.close();
             this.init();
           });
@@ -280,7 +278,7 @@ export class Channel extends EventEmitter {
         this.subscribe("JOIN", (msg: string) => {
           const parts = msg.split(" ");
           if (parts[0] !== "Welcome") {
-            throw new Error("Unexpected server response: " + msg);
+            throw new Error("Unexpected coordinator response: " + msg);
           } else {
             this.clientID = parts[2];
           }

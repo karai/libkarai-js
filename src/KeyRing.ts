@@ -52,6 +52,11 @@ export declare interface KeyRing {
  * It will create a new keyring in this directory or load the keyring
  * from the directory if it is already present.
  *
+ * It also takes the special string `:memory:` as a parameter to only
+ * store the keys in memory, so this module an run in a browser.
+ * Make sure you provide a way for the client to export the keys and
+ * cert if you do this.
+ *
  * Keyrings can only be used with one coordinator. You can not connect
  * to two different  coordinators with one keyring, you must generate
  * a new keyring for each coordinator.
@@ -88,20 +93,28 @@ export class KeyRing extends EventEmitter {
   private pubKeyFile: string;
   private privKeyFile: string;
   private cert: Uint8Array | null;
+  private memoryOnly: boolean;
+  private providedKey: string | null;
 
   /**
    * @param keyFolder - The folder where you want the keys to be saved.
    * If the folder does not exist, it will be created.
    * Keys are saved as utf8 encoded hex strings on the disk.
    */
-  constructor(keyFolder: string) {
+  constructor(keyFolder: string, secretKey: string | null = null) {
     super();
+
+    this.memoryOnly = keyFolder === ":memory:";
+
+    console.log(this.memoryOnly);
+
     this.init = this.init.bind(this);
     this.cert = null;
     this.keyFolder = keyFolder;
     this.pubKeyFile = `${this.keyFolder}/${configFolder.pubKey}`;
     this.privKeyFile = `${this.keyFolder}/${configFolder.privKey}`;
     this.signKeyPair = null;
+    this.providedKey = secretKey;
   }
 
   /**
@@ -158,9 +171,45 @@ export class KeyRing extends EventEmitter {
   }
 
   /**
+   * Sets the current cert. This is used internally by the Channel class.
+   *
+   * @returns The cert, or null.
+   */
+  public setCert(cert: Uint8Array): void {
+    if (!this.memoryOnly) {
+      fs.writeFileSync(`${this.getKeyFolder()}/cert`, Utils.toHexString(cert), {
+        encoding: "utf-8",
+      });
+    }
+
+    this.cert = cert;
+    console.log("CERT");
+    console.log(Utils.toHexString(cert));
+  }
+
+  /**
    * Re-initializes the keyring. This may be useful if you've made changes to the key files on disk and want them to update.
    */
   public init(): void {
+    if (this.memoryOnly) {
+      this.signKeyPair = this.providedKey
+        ? sign.keyPair.fromSecretKey(Utils.fromHexString(this.providedKey))
+        : sign.keyPair();
+
+      if (!this.providedKey) {
+        this.providedKey = Utils.toHexString(this.signKeyPair.secretKey);
+      }
+
+      console.log("PUBLIC KEY");
+      console.log(Utils.toHexString(this.signKeyPair.publicKey));
+
+      console.log("PRIVATE KEY");
+      console.log(Utils.toHexString(this.signKeyPair.secretKey));
+
+      this.emit("ready");
+      return;
+    }
+
     try {
       if (!fs.existsSync(this.keyFolder)) {
         fs.mkdirSync(this.keyFolder);
