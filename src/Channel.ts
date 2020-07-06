@@ -4,20 +4,54 @@ import fs from "fs";
 import WebSocket from "ws";
 import { KeyRing } from "./KeyRing";
 import { Utils } from "./Utils";
-import { sleep } from "./utils/sleep";
-import { toHexString } from "./utils/typeHelpers";
 
+/**
+ * @ignore
+ */
 interface ISubscription {
   type: string;
   // tslint:disable-next-line: ban-types
   callback: Function;
 }
 
+/**
+ * The IChannelinfo interface contains the type for the channel.info() response.
+ */
+interface IChannelInfo {
+  cert: string;
+  clientID: string;
+  host: string;
+}
+
+/**
+ * The ICoordinatorInfo interface contains the type for the channel.coordinator.info() response.
+ */
+interface ICoordinatorInfo {
+  peerID: string | null;
+  pubKey: string | null;
+  version: string | null;
+}
+
+/**
+ * The ICoordinator interface contains the methods for dealing with the coordinator.
+ */
+interface ICoordinator {
+  /**
+   * Retrieves the transactions in the channel.
+   *
+   * @returns - The coordinator info
+   */
+  info: () => ICoordinatorInfo;
+}
+
+/**
+ * The ITransactions interface contains methods for dealing with transactions.
+ */
 interface ITransactions {
   /**
    * Retrieves the transactions in the channel.
    *
-   * @returns - The connected coordinator Peer ID.
+   * @returns - The channel transactions as an array.
    */
   retrieve: () => Promise<any[]>;
 }
@@ -29,12 +63,14 @@ interface ITransactions {
  */
 export class Channel extends EventEmitter {
   /**
-   * Transactions contains the methods for interacting with transactions.
+   * The transactions object contains the methods for interacting with transactions.
    */
   public transactions: ITransactions;
-  public coordinator: {
-    info: () => any;
-  };
+  /**
+   * The coordinator object contains the methods for interacting with the coordinator.
+   */
+  public coordinator: ICoordinator;
+
   private host: string;
   private keyRing: KeyRing;
   private ws: WebSocket | null;
@@ -75,9 +111,9 @@ export class Channel extends EventEmitter {
     this.init();
   }
 
-  public info(): any {
+  public info(): IChannelInfo {
     return {
-      cert: toHexString(this.keyRing.getCert()!),
+      cert: Utils.toHexString(this.keyRing.getCert()!),
       clientID: this.getClientID(),
       host: this.getHost(),
     };
@@ -128,11 +164,11 @@ export class Channel extends EventEmitter {
     }
   }
 
-  private subscribe(type: string, callback: (msg: string) => void) {
+  private subscribe(type: string, callback: (msg: string) => void): void {
     this.subscription = { type, callback };
   }
 
-  private initWS() {
+  private initWS(): void {
     const endpoint = "/api/v1/channel";
     const ws = new WebSocket(`${this.host!}${endpoint}`);
 
@@ -152,7 +188,7 @@ export class Channel extends EventEmitter {
 
         let timeout = 1;
         while (this.subscription) {
-          await sleep(timeout);
+          await Utils.sleep(timeout);
           timeout *= 2;
         }
         timeout = 1;
@@ -164,7 +200,7 @@ export class Channel extends EventEmitter {
 
         timeout = 1;
         while (this.subscription) {
-          await sleep(timeout);
+          await Utils.sleep(timeout);
           timeout *= 2;
         }
         timeout = 1;
@@ -206,7 +242,7 @@ export class Channel extends EventEmitter {
 
         let timeout = 1;
         while (this.subscription) {
-          await sleep(timeout);
+          await Utils.sleep(timeout);
           timeout *= 2;
         }
         timeout = 1;
@@ -218,7 +254,7 @@ export class Channel extends EventEmitter {
 
         timeout = 1;
         while (this.subscription) {
-          await sleep(timeout);
+          await Utils.sleep(timeout);
           timeout *= 2;
         }
         timeout = 1;
@@ -230,7 +266,7 @@ export class Channel extends EventEmitter {
     this.ws = ws;
   }
 
-  private async returnCoordPeerID() {
+  private async returnCoordPeerID(): Promise<string> {
     const endpoint = "/api/v1/peer";
     const res = await ax.get(`${this.host}${endpoint}`);
     if (!res.data || !res.data.p2p_peer_ID) {
@@ -241,7 +277,7 @@ export class Channel extends EventEmitter {
     }
   }
 
-  private async returnChannelTransactions() {
+  private async returnChannelTransactions(): Promise<any[]> {
     console.log(this.host);
 
     const endpoint = "/api/v1/transactions";
@@ -250,7 +286,7 @@ export class Channel extends EventEmitter {
     return res.data;
   }
 
-  private async checkOnline() {
+  private async checkOnline(): Promise<void> {
     const endpoint = "/api/v1/version";
     const res = await ax.get(`${this.host}${endpoint}`);
     if (!res.data) {
@@ -260,7 +296,7 @@ export class Channel extends EventEmitter {
     }
   }
 
-  private async sendMessage(type: string, data: string = "") {
+  private async sendMessage(type: string, data: string = ""): Promise<void> {
     if (!this.ws) {
       throw new Error("Can't call this until the ready event is emitted!");
     } else {
@@ -268,7 +304,7 @@ export class Channel extends EventEmitter {
     }
   }
 
-  private async init() {
+  private async init(): Promise<void> {
     try {
       this.keyRing.init();
       // check if the coordinator is online

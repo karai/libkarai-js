@@ -5,6 +5,9 @@ import fs from "fs";
 import { sign, SignKeyPair } from "tweetnacl";
 import { Utils } from "./Utils";
 
+/**
+ * @ignore
+ */
 const configFolder = {
   keyFolderName: "keys",
   privKey: "key.priv",
@@ -12,8 +15,41 @@ const configFolder = {
 };
 
 /**
- * The KeyRing provides an interface that allows you to generate, store, sign, and
+ * The KeyRing provides an interface that allows you to generate
+ * and store a pair of ed25519 keys, as well as sign and
  * verify ed25519 signatures.
+ *
+ * It takes a directory as the only argument of the constructor.
+ * It will create a new keyring in this directory or load the keyring
+ * from the directory if it is already present.
+ *
+ * Keyrings can only be used with one coordinator. You can not connect
+ * to two different  coordinators with one keyring, you must generate
+ * a new keyring for each coordinator.
+ *
+ * Example Usage:
+ *
+ * ```ts
+ * const keyring = new KeyRing("./keyring");
+ *
+ * // If you want to perform operations with the keyring, wait for the ready event.
+ *   keyring.on("ready", () => {
+ *   const signed = keyring.sign(keyring.getPub());
+ *   const verified = keyring.verify(keyring.getPub(), signed, keyring.getPub());
+ *
+ *   if (verified) {
+ *     console.log("The signature is verified!");
+ *   }
+ * });
+ *
+ *   keyring.on("error", (error: Error) => {
+ *     // do something with the error
+ *   });
+ * ```
+ *
+ * Note that the sign() and verify() functions take uint8 arrays.
+ * If you need to convert hex strings into Uint8 arrays, use the
+ * helper functions in the Utils class.
  *
  * @noInheritDoc
  */
@@ -24,6 +60,11 @@ export class KeyRing extends EventEmitter {
   private privKeyFile: string;
   private cert: Uint8Array | null;
 
+  /**
+   * @param keyFolder - The folder where you want the keys to be saved.
+   * If the folder does not exist, it will be created.
+   * Keys are saved as utf8 encoded hex strings on the disk.
+   */
   constructor(keyFolder: string) {
     super();
     this.init = this.init.bind(this);
@@ -70,7 +111,7 @@ export class KeyRing extends EventEmitter {
   }
 
   /**
-   * Get the current key folder path.
+   * Get the keyring directory path.
    *
    * @returns The key folder path.
    */

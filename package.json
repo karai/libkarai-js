@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "node ./node_modules/typescript/bin/tsc",
-    "docs": "./node_modules/.bin/typedoc --options ./typedoc.js",
+    "docs": "./node_modules/.bin/typedoc --options typedoc.json",
     "prepack": "yarn build",
     "prettier": "node ./node_modules/prettier/bin-prettier.js '**/*.{ts,tsx,json,md}' --trailing-comma es5 --ignore-path .gitignore --arrow-parens always --write",
     "lint": "./node_modules/tslint/bin/tslint src/**/*.ts{,x}",
@@ -21,6 +21,7 @@
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "typedoc": "^0.17.8",
+    "typedoc-plugin-no-inherit": "^1.1.10",
     "typescript": "^3.9.6"
   },
   "lint-staged": {
