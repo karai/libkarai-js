@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/34389545/86867110-db4be400-c097-11ea-9a45-563e343a002e.png)
+
 # libkarai-js
 
 [![npm version](https://badge.fury.io/js/libkarai-js.svg)](https://badge.fury.io/js/libkarai-js)
